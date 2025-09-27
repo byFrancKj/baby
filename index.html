@@ -63,9 +63,10 @@
         .cloud:before { width: 80px; height: 80px; top: -40px; left: 30px; }
         .cloud:after { width: 120px; height: 120px; top: -60px; right: 20px; }
         
-        .cloud1 { top: 15%; animation: move-clouds 65s linear infinite alternate; }
-        .cloud2 { top: 40%; animation: move-clouds 45s linear infinite alternate; }
-        .cloud3 { top: 70%; animation: move-clouds 55s linear infinite alternate; }
+        /* Velocidades de animación ajustadas */
+        .cloud1 { top: 15%; animation: move-clouds 60s linear infinite alternate; }
+        .cloud2 { top: 40%; animation: move-clouds 40s linear infinite alternate; }
+        .cloud3 { top: 70%; animation: move-clouds 50s linear infinite alternate; }
 
         @keyframes move-clouds {
             from { transform: translateX(-250px); }
@@ -83,14 +84,14 @@
             filter: drop-shadow(0 0 15px rgba(253, 186, 116, 0.8));
         }
         
-        /* Estilos y animación para el globo aerostático - más dinámico */
+        /* Estilos y animación para el globo aerostático - más dinámico y rápido */
         .hot-air-balloon {
             position: absolute;
             width: 100px;
             md:width: 120px;
             bottom: -150px;
             left: 10%;
-            animation: balloon-float 45s ease-in-out infinite 2s;
+            animation: balloon-float 40s ease-in-out infinite 2s;
         }
         @keyframes balloon-float {
             0% { transform: translateY(0) rotate(-2deg); opacity: 0; }
@@ -102,7 +103,7 @@
             100% { transform: translateY(-130vh) rotate(0deg); opacity: 0; }
         }
 
-        /* Animación para pájaros volando */
+        /* Animación para pájaros volando - más rápido */
         .bird {
             position: absolute;
             width: 50px;
@@ -115,7 +116,7 @@
             position: absolute;
             top: 20%;
             left: -100px; /* Start off-screen */
-            animation: move-bird-container 25s linear infinite 5s; /* Start after 5s */
+            animation: move-bird-container 22s linear infinite 5s; /* Start after 5s */
         }
         @keyframes move-bird-container {
             0% { transform: translateX(0) translateY(0); }
@@ -229,6 +230,7 @@
         <footer class="py-10 reveal">
             <p class="font-fancy text-2xl text-sky-600 mb-2">¡Te esperamos con mucha ilusión!</p>
             <p class="text-gray-600">Con cariño, los futuros papás.</p>
+            <p class="text-xs text-gray-500 mt-4">Elaborada por Francisco Javier García García</p>
         </footer>
 
     </main>
@@ -262,3 +264,4 @@
     </script>
 </body>
 </html>
+
