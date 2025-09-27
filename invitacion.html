@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Shower de Jaziel Elonai</title>
+    
+    <!-- Tailwind CSS para un diseño moderno y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts para una tipografía elegante -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos personalizados y animaciones */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            color: #3A4F6A; /* Un azul oscuro y suave para el texto */
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .font-fancy {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Nuevo fondo de cielo diurno */
+        .sky-background {
+            background: linear-gradient(to top, #a1c4fd 0%, #c2e9fb 100%);
+        }
+
+        /* Contenedor para elementos animados del cielo */
+        .sky-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        /* Estilos y animación para las nubes */
+        .cloud {
+            position: absolute;
+            width: 200px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 60px;
+            filter: blur(1px);
+        }
+        .cloud:before, .cloud:after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+        }
+        .cloud:before { width: 80px; height: 80px; top: -40px; left: 30px; }
+        .cloud:after { width: 120px; height: 120px; top: -60px; right: 20px; }
+        
+        .cloud1 { top: 15%; animation: move-clouds 65s linear infinite alternate; }
+        .cloud2 { top: 40%; animation: move-clouds 45s linear infinite alternate; }
+        .cloud3 { top: 70%; animation: move-clouds 55s linear infinite alternate; }
+
+        @keyframes move-clouds {
+            from { transform: translateX(-250px); }
+            to { transform: translateX(calc(100vw + 250px)); }
+        }
+
+        /* Animación para el sol */
+        @keyframes sun-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .sun {
+            animation: sun-pulse 8s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(253, 186, 116, 0.8));
+        }
+        
+        /* Estilos y animación para el globo aerostático - más dinámico */
+        .hot-air-balloon {
+            position: absolute;
+            width: 100px;
+            md:width: 120px;
+            bottom: -150px;
+            left: 10%;
+            animation: balloon-float 45s ease-in-out infinite 2s;
+        }
+        @keyframes balloon-float {
+            0% { transform: translateY(0) rotate(-2deg); opacity: 0; }
+            10% { opacity: 1; }
+            25% { transform: translateY(-40vh) rotate(3deg); }
+            50% { transform: translateY(-80vh) rotate(-2deg); }
+            75% { transform: translateY(-100vh) rotate(1deg); }
+            90% { opacity: 1; }
+            100% { transform: translateY(-130vh) rotate(0deg); opacity: 0; }
+        }
+
+        /* Animación para pájaros volando */
+        .bird {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0.7;
+            stroke: #5A677A;
+            animation: fly-birds 1s ease-in-out infinite alternate;
+        }
+        .bird-container {
+            position: absolute;
+            top: 20%;
+            left: -100px; /* Start off-screen */
+            animation: move-bird-container 25s linear infinite 5s; /* Start after 5s */
+        }
+        @keyframes move-bird-container {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(calc(100vw + 200px)) translateY(-10vh); }
+        }
+        @keyframes fly-birds {
+            from { transform: translateY(0px); }
+            to { transform: translateY(15px); }
+        }
+
+        /* Animación para la aparición de elementos al hacer scroll - mejorada */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        /* Estilos para las tarjetas con efecto de vidrio esmerilado */
+        .info-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="sky-background">
+
+    <!-- Contenedor de las nubes y globo -->
+    <div class="sky-container">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+        <!-- Globo Aerostático Animado -->
+        <svg class="hot-air-balloon" viewBox="0 0 100 125">
+            <path fill="#4299E1" d="M85,40.1c0,19.3-15.7,35-35,35s-35-15.7-35-35c0-19.3,15.7-35,35-35S85,20.7,85,40.1z"/>
+            <path fill="#F7FAFC" d="M15,40.1c0-5.2,1-10.2,2.9-14.8c18.8-4.7,38.5-4.7,54.3,0c1.9,4.6,2.9,9.6,2.9,14.8c0,5.2-1,10.2-2.9,14.8 c-18.8,4.7-38.5,4.7-54.3,0C16,50.3,15,45.3,15,40.1z"/>
+            <path fill="#2B6CB0" d="M50,5.1c-0.2,0-0.5,0-0.7,0c-0.2,0-0.3,0-0.5,0c-0.2,0-0.3,0-0.5,0c-0.2,0-0.3,0-0.5,0c-0.2,0-0.3,0-0.5,0 c-0.2,0-0.3,0-0.5,0c-0.2,0-0.3,0-0.5,0c-0.2,0-0.3,0-0.5,0c-0.2,0-0.3,0-0.5,0c-0.2,0-0.3,0-0.5,0c-0.2,0-0.3,0-0.5,0 c-0.2,0-0.3,0-0.5,0c-0.2,0-0.3,0-0.5,0c-0.2,0-0.3,0-0.5,0c-0.2,0-0.3,0-0.5,0c-0.2,0-0.3,0-0.5,0 c-18.8,4.7-33.8,18.4-34.8,35.8c18.8-4.7,38.5-4.7,54.3,0c1.9,4.6,2.9,9.6,2.9,14.8c0,5.2-1,10.2-2.9,14.8 c-18.8,4.7-38.5,4.7-54.3,0C16,50.3,15,45.3,15,40.1c0-19.3,15.7-35,35-35c0.2,0,0.3,0,0.5,0c0.2,0,0.3,0,0.5,0 c0.2,0,0.3,0,0.5,0c0.2,0,0.3,0,0.5,0c0.2,0,0.3,0,0.5,0c0.2,0,0.3,0,0.5,0c0.2,0,0.3,0,0.5,0c0.2,0,0.3,0,0.5,0 C50.3,5.1,50.2,5.1,50,5.1z"/>
+            <path fill="#A0AEC0" d="M50,75.1c-9.7,0-17.5,7.8-17.5,17.5h35C67.5,82.9,59.7,75.1,50,75.1z"/>
+            <path fill="#4A5568" d="M40,92.6h20v10H40V92.6z"/>
+            <line fill="none" stroke="#A0AEC0" stroke-width="2" stroke-miterlimit="10" x1="35" y1="92.6" x2="25" y2="72.1"/>
+            <line fill="none" stroke="#A0AEC0" stroke-width="2" stroke-miterlimit="10" x1="65" y1="92.6" x2="75" y2="72.1"/>
+        </svg>
+        <!-- Pájaros volando -->
+        <div class="bird-container">
+            <svg class="bird" viewBox="0 0 50 50">
+                <path d="M15.2,27.9c-3.2,0-5,1.8-5,1.8s1.8,0,3.5-1.8s-0.2-5.4,5.4-4.7s5.1,3.4,5.1,3.4s-3-2.1-5.4-0.9 C15.4,27.1,15.2,27.9,15.2,27.9z" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M37.6,21.6c-3.2,0-5,1.8-5,1.8s1.8,0,3.5-1.8s-0.2-5.4,5.4-4.7s5.1,3.4,5.1,3.4s-3-2.1-5.4-0.9 C37.8,20.8,37.6,21.6,37.6,21.6z" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </div>
+
+    <main class="relative z-10 p-6 md:p-8 min-h-screen flex flex-col items-center justify-center text-center">
+        
+        <!-- Sección Principal -->
+        <header class="w-full flex-grow flex flex-col items-center justify-center pt-20 pb-10">
+            <svg class="sun w-24 h-24 md:w-32 md:h-32 text-orange-300 mb-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/><path d="M12 6c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1s-1-.45-1-1V7c0-.55.45-1 1-1zm0 10c-.55 0-1-.45-1-1v-1c0-.55.45-1 1-1s1 .45 1 1v1c0 .55-.45 1-1 1zm5.66-10.66c.39-.39.39-1.02 0-1.41a.996.996 0 00-1.41 0l-.71.71c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l.71-.71zM6.34 17.66c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l.71-.71c.39-.39.39-1.02 0-1.41a.996.996 0 00-1.41 0l-.71.71zM20 12c0-.55-.45-1-1-1h-1c-.55 0-1 .45-1 1s.45 1 1 1h1c.55 0 1-.45 1-1zM5 12c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1s.45 1 1 1h1c.55 0 1-.45 1-1zm11.66 5.66c.39.39 1.02.39 1.41 0l.71-.71c.39-.39.39-1.02 0-1.41a.996.996 0 00-1.41 0l-.71.71c-.39.39-.39 1.02 0 1.41zM8.46 6.34c.39.39 1.02.39 1.41 0l.71-.71c.39-.39.39-1.02 0-1.41a.996.996 0 00-1.41 0l-.71.71c-.39.39-.39 1.02 0 1.41z"/></svg>
+            <h2 class="text-xl md:text-2xl font-light tracking-widest uppercase reveal text-sky-800">Baby Shower</h2>
+            <h1 class="font-fancy text-6xl md:text-8xl my-4 text-sky-600 reveal" style="transition-delay: 100ms;">Jaziel Elonai</h1>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto reveal text-gray-600" style="transition-delay: 200ms;">Estamos en la dulce espera de nuestro pequeño tesoro. ¡Una gran aventura está por comenzar y queremos que seas parte de este momento tan especial! Acompáñanos a celebrar.</p>
+            <div class="mt-12 reveal" style="transition-delay: 300ms;">
+                <svg class="w-8 h-8 animate-bounce text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </div>
+        </header>
+        
+        <section class="w-full max-w-4xl mx-auto py-20 reveal">
+            <h3 class="font-fancy text-4xl mb-8 text-sky-800">Cuenta Regresiva</h3>
+            <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
+                <div class="info-card p-6 reveal" style="transition-delay: 100ms;"><span id="days" class="text-5xl font-bold text-sky-900">00</span><span class="block mt-2 uppercase tracking-widest text-sm text-sky-700">Días</span></div>
+                <div class="info-card p-6 reveal" style="transition-delay: 200ms;"><span id="hours" class="text-5xl font-bold text-sky-900">00</span><span class="block mt-2 uppercase tracking-widest text-sm text-sky-700">Horas</span></div>
+                <div class="info-card p-6 reveal" style="transition-delay: 300ms;"><span id="minutes" class="text-5xl font-bold text-sky-900">00</span><span class="block mt-2 uppercase tracking-widest text-sm text-sky-700">Minutos</span></div>
+                <div class="info-card p-6 reveal" style="transition-delay: 400ms;"><span id="seconds" class="text-5xl font-bold text-sky-900">00</span><span class="block mt-2 uppercase tracking-widest text-sm text-sky-700">Segundos</span></div>
+            </div>
+        </section>
+
+        <section class="w-full max-w-4xl mx-auto py-20 reveal">
+            <h3 class="font-fancy text-4xl mb-12 text-sky-800">Te esperamos para celebrar</h3>
+            <div class="grid md:grid-cols-2 gap-12 text-left">
+                <div class="info-card p-8 flex items-start space-x-6 reveal" style="transition-delay: 100ms;">
+                    <svg class="w-12 h-12 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <div><h4 class="text-2xl font-semibold text-sky-900">Fecha y Hora</h4><p class="text-gray-700 mt-2">Viernes, 3 de octubre de 2025</p><p class="text-gray-700">19:30 horas</p></div>
+                </div>
+                <div class="info-card p-8 flex items-start space-x-6 reveal" style="transition-delay: 200ms;">
+                    <svg class="w-12 h-12 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <div><h4 class="text-2xl font-semibold text-sky-900">Ubicación</h4><p class="text-gray-700 mt-2">IMSS Bienestar - Hospital Materno Leona Vicario Bicentenario</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full max-w-4xl mx-auto py-10 text-center">
+            <div class="reveal">
+                <svg class="w-16 h-16 text-teal-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
+                <h3 class="font-fancy text-4xl mb-4 text-sky-800">Mesa de Regalos</h3>
+                <p class="text-gray-700 max-w-xl mx-auto">Tu presencia es el mejor regalo. Si además deseas tener un detalle con Jaziel, agradecemos de corazón pañales, ropita o tu aporte para sus primeras aventuras.</p>
+            </div>
+        </section>
+
+        <section class="w-full max-w-4xl mx-auto pt-10 pb-20 reveal">
+             <a href="https://maps.google.com/?q=19.306365710912452,-98.8598141769107" target="_blank" rel="noopener noreferrer" 
+                class="inline-block bg-teal-400 hover:bg-teal-500 text-white font-bold py-4 px-8 rounded-full text-lg transition-all transform hover:scale-110 shadow-lg duration-300">
+                Cómo Llegar
+            </a>
+        </section>
+
+        <footer class="py-10 reveal">
+            <p class="font-fancy text-2xl text-sky-600 mb-2">¡Te esperamos con mucha ilusión!</p>
+            <p class="text-gray-600">Con cariño, los futuros papás.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        (function () {
+            const eventDate = new Date(2025, 9, 3, 19, 30, 0).getTime();
+            const countdownElement = document.getElementById('countdown');
+            if (!countdownElement) return;
+            const daysEl = document.getElementById('days'), hoursEl = document.getElementById('hours'), minutesEl = document.getElementById('minutes'), secondsEl = document.getElementById('seconds');
+            const updateCountdown = () => {
+                const now = new Date().getTime(), distance = eventDate - now;
+                if (distance < 0) {
+                    countdownElement.innerHTML = `<p class="col-span-full text-3xl font-fancy text-sky-800">¡El gran día ha llegado!</p>`;
+                    clearInterval(interval); return;
+                }
+                daysEl.textContent = String(Math.floor(distance / 864e5)).padStart(2, '0');
+                hoursEl.textContent = String(Math.floor((distance % 864e5) / 36e5)).padStart(2, '0');
+                minutesEl.textContent = String(Math.floor((distance % 36e5) / 6e4)).padStart(2, '0');
+                secondsEl.textContent = String(Math.floor((distance % 6e4) / 1e3)).padStart(2, '0');
+            };
+            const interval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        })();
+        (function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        })();
+    </script>
+</body>
+</html>
